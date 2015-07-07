@@ -1,10 +1,10 @@
 Package: lazappi
-Title: What the Package Does (one line, title case)
+Title: My personal R package.
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
+Authors@R: person("Luke", "Zappia", email = "luke.zappia@gmail.com", role = c("aut", "cre"))
+Description: A set of custom functions that I commonly use.
 Depends: R (>= 3.2.1)
-License: What license is it under?
+License: MIT
 LazyData: true
 Suggests: knitr
 VignetteBuilder: knitr
