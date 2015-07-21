@@ -1,5 +1,20 @@
-# Default RMarkdown options
-# Changing these will change them for all chunks unless otherwise set
+#' Default Chunk Options
+#' 
+#' Set default chunk options for knitr
+#' 
+#' @details
+#' Sets my preferred options for how knitr displays code and figures
+#' 
+#' @export
+#' 
+#' @examples
+#' defaultChunkOpts()
+#' 
+#' @seealso
+#' \code{\link[knitr]{opts_chunk}}
+#' 
+#' @keywords
+#' rmarkdown
 defaultChunkOpts <- function() {
        
     knitr::opts_chunk$set(

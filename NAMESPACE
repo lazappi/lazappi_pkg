@@ -2,3 +2,4 @@
 
 export(cat_function)
 export(chrRound)
+export(defaultChunkOpts)
