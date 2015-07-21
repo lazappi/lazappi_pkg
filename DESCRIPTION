@@ -8,3 +8,4 @@ License: MIT
 LazyData: true
 Suggests: knitr
 VignetteBuilder: knitr
+Imports: knitr
