@@ -62,7 +62,7 @@ defaultChunkOpts <- function() {
         fig.height     = 7,            # Figure height, in inches
         fig.keep       = "high",       # How plots are kept
         fig.lp         = "fig:",       # Prefix for figure labels
-        fig.path       = "figure",     # Prefix for figure filenames
+        fig.path       = "figs/",      # Prefix for figure filenames
         fig.pos        = "",           # Figure position arrangement
         fig.process    = NULL,         # Function to post-process figure file
         fig.retina     = 1,            # Adjustment for retina displays
