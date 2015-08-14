@@ -17,4 +17,9 @@ Vector containing the union
 \description{
 Find the union of a list of vectors
 }
+\examples{
+l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+          Set3 = sample(20, 10), Set4 = sample(20, 10))
+listUnion(l)
+}
 

@@ -20,4 +20,10 @@ List containing combined sets
 \description{
 Compute combination of a list of vectors using a selected set method
 }
+\examples{
+l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+          Set3 = sample(20, 10), Set4 = sample(20, 10))
+combineSets(l, "union")
+combineSets(l, "intersect")
+}
 

@@ -19,4 +19,11 @@ List containing the items in set.list1 that are not in set.list2
 \description{
 Find the items that are in one list of vector but not another
 }
+\examples{
+l1 <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+           Set3 = sample(20, 10), Set4 = sample(20, 10))
+l2 <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+           Set3 = sample(20, 10), Set4 = sample(20, 10))
+listSetdiff(l1, l2)
+}
 

@@ -18,4 +18,9 @@ List of sets corresponding to Venn regions
 Takes a list of vectors and returns the sets corresponding to the overlapping
 regions in a Venn diagram
 }
+\examples{
+l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+          Set3 = sample(20, 10), Set4 = sample(20, 10))
+overlapSets(l)
+}
 

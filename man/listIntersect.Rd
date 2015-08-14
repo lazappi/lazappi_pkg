@@ -17,4 +17,9 @@ Vector containing the intersection
 \description{
 Find the intersect of a list of vectors
 }
+\examples{
+l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+          Set3 = sample(20, 10), Set4 = sample(20, 10))
+listIntersect(l)
+}
 

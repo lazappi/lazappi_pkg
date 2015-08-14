@@ -7,6 +7,11 @@
 #' 
 #' @return Vector containing the intersection
 #' 
+#' @examples
+#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
+#' listIntersect(l)
+#' 
 #' @export
 listIntersect <- function(set.list, sort = TRUE) {
     
@@ -33,6 +38,11 @@ listIntersect <- function(set.list, sort = TRUE) {
 #' @param sort     Whether to sort the final set, default is TRUE
 #' 
 #' @return Vector containing the union
+#' 
+#' @examples
+#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
+#' listUnion(l)
 #' 
 #' @export
 listUnion <- function(set.list, sort = TRUE) {
@@ -62,6 +72,13 @@ listUnion <- function(set.list, sort = TRUE) {
 #' 
 #' @return List containing the items in set.list1 that are not in set.list2
 #' 
+#' @examples
+#' l1 <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+#'            Set3 = sample(20, 10), Set4 = sample(20, 10))
+#' l2 <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+#'            Set3 = sample(20, 10), Set4 = sample(20, 10))
+#' listSetdiff(l1, l2)
+#' 
 #' @export
 listSetdiff <- function(set.list1, set.list2, sort = TRUE) {
     
@@ -84,6 +101,11 @@ listSetdiff <- function(set.list1, set.list2, sort = TRUE) {
 #' @param sort     Whether to sort the final sets, default is TRUE
 #' 
 #' @return List of sets corresponding to Venn regions
+#' 
+#' @examples
+#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
+#' overlapSets(l)
 #' 
 #' @export
 overlapSets <- function(set.list, sort = TRUE) {
@@ -124,6 +146,12 @@ overlapSets <- function(set.list, sort = TRUE) {
 #' @param sort     Whether to sort the final sets, default is TRUE
 #' 
 #' @return List containing combined sets
+#' 
+#' @examples
+#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
+#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
+#' combineSets(l, "union")
+#' combineSets(l, "intersect")
 #' 
 #' @export
 combineSets <- function(set.list, method = c("union", "intersect"),
