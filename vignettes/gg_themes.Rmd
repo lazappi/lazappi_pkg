@@ -228,3 +228,31 @@ gg
 gg + theme_lazappi()
 ```
 
+Facet Grid
+==========
+
+```{r facet_grid}
+gg <- ggplot(mtcars, aes(x = mpg, y = wt, colour = factor(cyl))) +
+      geom_point() +
+      facet_grid(vs ~ am, scales = "free")
+gg
+```
+
+```{r facet_grid-lazappi}
+gg + theme_lazappi()
+```
+
+Facet Wrap
+==========
+
+```{r facet_wrap}
+gg <- ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
+      geom_point() +
+      facet_wrap(~ color)
+gg
+```
+
+```{r facet_wrap-lazappi}
+gg + theme_lazappi()
+```
+
