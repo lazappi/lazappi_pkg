@@ -2,4 +2,8 @@
 
 export(cat_function)
 export(chrRound)
+export(combineSets)
 export(defaultChunkOpts)
+export(listIntersect)
+export(listSetdiff)
+export(listUnion)

@@ -60,7 +60,7 @@ listUnion <- function(set.list, sort = TRUE) {
 #' @param set.list2 The second list of vectors to compare
 #' @param sort      Whether to sort the final set, default is TRUE
 #' 
-#' @return
+#' @return List containing the items in set.list1 that are not in set.list2
 #' 
 #' @export
 listSetdiff <- function(set.list1, set.list2, sort = TRUE) {
