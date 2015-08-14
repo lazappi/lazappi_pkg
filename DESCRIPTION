@@ -9,4 +9,5 @@ LazyData: true
 Suggests: knitr
 VignetteBuilder: knitr
 Imports: knitr,
-    ggplot2
+    ggplot2,
+    grid
