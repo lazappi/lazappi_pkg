@@ -84,6 +84,8 @@ listSetdiff <- function(set.list1, set.list2, sort = TRUE) {
 #' @param sort     Whether to sort the final sets, default is TRUE
 #' 
 #' @return List of sets corresponding to Venn regions
+#' 
+#' @export
 overlapSets <- function(set.list, sort = TRUE) {
     
     # Get names, set if needed
