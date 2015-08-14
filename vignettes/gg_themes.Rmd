@@ -1,0 +1,178 @@
+---
+title: "lazappi ggplot2 Themes"
+author: "Luke Zappia"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r options, include = FALSE}
+knitr::opts_chunk$set(fig.width = 7, fig.height = 5)
+```
+
+
+Example plots for designing `ggplot` themes.
+
+```{r libraries}
+library(lazappi)
+library(ggplot2)
+```
+
+Scatter
+=======
+
+```{r scatter}
+gg <- ggplot(diamonds, aes(x = carat, y = price, colour = clarity)) +
+      geom_point()
+gg
+```
+
+Line
+====
+
+```{r line}
+mry <- do.call(rbind,
+               by(movies, round(movies$rating),
+                   function(df) {
+                       nums <- tapply(df$length, df$year, length)
+                       data.frame(rating = round(df$rating[1]),
+                                  year   = as.numeric(names(nums)), 
+                                  number = as.vector(nums))
+                       }
+                  )
+               )
+
+gg <- ggplot(mry, aes(x = year, y = number, group = rating, colour = rating)) +
+      geom_line()
+gg
+```
+
+Smoothed
+========
+
+```{r smoothed}
+model <- lm(mpg ~ wt + factor(cyl), data = mtcars)
+grid <- with(mtcars, expand.grid(
+    wt = seq(min(wt), max(wt), length = 20),
+    cyl = levels(factor(cyl))
+    )
+)
+grid$mpg <- stats::predict(model, newdata=grid)
+err <- stats::predict(model, newdata=grid, se = TRUE)
+grid$ucl <- err$fit + 1.96 * err$se.fit
+grid$lcl <- err$fit - 1.96 * err$se.fit
+
+gg <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(cyl))) +
+      geom_point() +
+      geom_smooth(aes(ymin = lcl, ymax = ucl), data = grid, stat = "identity")
+gg
+```
+
+Bar
+===
+
+```{r bar}
+gg <- ggplot(diamonds, aes(x = clarity, fill = cut)) + geom_bar()
+gg
+```
+
+Histogram
+=========
+
+```{r histogram}
+gg <- ggplot(movies, aes(x = rating, fill = ..count..)) + geom_histogram()
+gg
+```
+
+Freq Poly
+=========
+
+```{r freq_poly}
+gg <- ggplot(diamonds, aes(x = price, colour = color)) +
+      geom_freqpoly(binwidth = 1000)
+gg
+```
+
+Density
+=======
+
+```{r density}
+set.seed(4393)
+diamonds_small <- diamonds[sample(nrow(diamonds), 1000), ]
+
+gg <- ggplot(diamonds_small, aes(x = depth, fill = cut)) +
+      geom_density(alpha = 0.2)
+gg
+```
+
+2D Density
+==========
+
+```{r 2d_density}
+gg <- ggplot(diamonds_small, aes(x = carat, y = price)) + geom_density2d()
+gg
+```
+
+Boxplot
+=======
+
+```{r boxplot}
+gg <- ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
+      geom_boxplot()
+gg
+```
+
+Violin
+======
+
+```{r violin}
+gg <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+      geom_violin(aes(fill = factor(cyl)))
+gg
+```
+
+Dotplot
+=======
+
+```{r dotplot}
+gg <- ggplot(mtcars, aes(x = factor(vs), fill = factor(cyl), y = mpg)) +
+      geom_dotplot(binaxis = "y", stackdir = "center", position = "dodge")
+gg
+```
+
+Tile
+====
+
+```{r tile}
+pp <- function (n, r = 4) {
+    x    <- seq(-r * pi, r * pi, len = n)
+    df   <- expand.grid(x = x, y = x)
+    df$r <- sqrt(df$x ^ 2 + df$y ^ 2)
+    df$z <- cos(df$r ^ 2) * exp(-df$r / 6)
+    df
+}
+
+gg <- ggplot(pp(20), aes(x = x, y = y)) + geom_tile(aes(fill = z))
+gg
+```
+
+Tile 2
+======
+
+```{r tile2}
+x.cell.boundary <- c(0, 4, 6, 8, 10, 14)
+example <- data.frame(
+    x = rep(c(2, 5, 7, 9, 12), 2),
+    y = factor(rep(c(1,2), each = 5)),
+    z = rep(1:5, each = 2),
+    w = rep(diff(x.cell.boundary), 2)
+)
+
+gg <- ggplot(example, aes(x = x, y = y, fill = factor(z), width = w)) +
+      geom_tile()
+gg
+```
+
