@@ -3,11 +3,12 @@
 #' Find the intersect of a list of vectors
 #' 
 #' @param set.list List of vectors to intersect
+#' @param sort     Whether to sort the final set, default is TRUE
 #' 
 #' @return Vector containing the intersection
 #' 
 #' @export
-listIntersect <- function(set.list) {
+listIntersect <- function(set.list, sort = TRUE) {
     
     if (length(set.list) == 0) {
         inter.set <- c()
@@ -19,6 +20,8 @@ listIntersect <- function(set.list) {
         inter.set <- intersect(set.list[[1]], listIntersect(set.list[-1]))
     }
     
+    if (sort && length(inter.set > 0)) {inter.set <- sort(inter.set)}
+    
     return(inter.set)
 }
 
@@ -27,11 +30,12 @@ listIntersect <- function(set.list) {
 #' Find the union of a list of vectors
 #' 
 #' @param set.list List of vectors to union
+#' @param sort     Whether to sort the final set, default is TRUE
 #' 
-#' @return Vector contining the union
+#' @return Vector containing the union
 #' 
 #' @export
-listUnion <- function(set.list) {
+listUnion <- function(set.list, sort = TRUE) {
     
     if (length(set.list) == 0) {
         union.set <- c()
@@ -43,6 +47,8 @@ listUnion <- function(set.list) {
         union.set <- union(set.list[[1]], listUnion(set.list[-1]))
     }
     
+    if (sort && length(union.set > 0)) {union.set <- sort(union.set)}
+    
     return(union.set)
 }
 
@@ -52,16 +58,19 @@ listUnion <- function(set.list) {
 #' 
 #' @param set.list1 The first list of vectors to compare
 #' @param set.list2 The second list of vectors to compare
+#' @param sort      Whether to sort the final set, default is TRUE
 #' 
 #' @return
 #' 
 #' @export
-listSetdiff <- function(set.list1, set.list2) {
+listSetdiff <- function(set.list1, set.list2, sort = TRUE) {
     
     set.list1.inter <- listIntersect(set.list1)
     set.list2.union <- listUnion(set.list2)
     
     diff.set <- setdiff(set.list1.inter, set.list2.union)
+    
+    if (sort && length(diff.set > 0)) {diff.set <- sort(diff.set)}
     
     return(diff.set)
 }
@@ -72,9 +81,10 @@ listSetdiff <- function(set.list1, set.list2) {
 #' regions in a Venn diagram
 #' 
 #' @param set.list List of vectors to overlap
+#' @param sort     Whether to sort the final sets, default is TRUE
 #' 
 #' @return List of sets corresponding to Venn regions
-overlapSets <- function(set.list) {
+overlapSets <- function(set.list, sort = TRUE) {
     
     # Get names, set if needed
     if (is.null(names(set.list))) {
@@ -95,7 +105,8 @@ overlapSets <- function(set.list) {
     venn.sets <- lapply(combos,
                         function(combo) {
                             listSetdiff(set.list[combo],
-                                        set.list[setdiff(set.names, combo)])
+                                        set.list[setdiff(set.names, combo)],
+                                        sort = sort)
                         }) 
     
     return(venn.sets)
@@ -108,11 +119,13 @@ overlapSets <- function(set.list) {
 #' @param set.list List of vectors to combine
 #' @param method   Method to combine sets, can be "union" or "intersect"
 #'                 abbreviations accepted)
+#' @param sort     Whether to sort the final sets, default is TRUE
 #' 
 #' @return List containing combined sets
 #' 
 #' @export
-combineSets <- function(set.list, method = c("union", "intersect")) {
+combineSets <- function(set.list, method = c("union", "intersect"),
+                        sort = TRUE) {
     
     method <- match.arg(method)
     
@@ -139,13 +152,14 @@ combineSets <- function(set.list, method = c("union", "intersect")) {
            union = {
                combo.sets <- lapply(combos,
                                     function(combo) {
-                                        listUnion(set.list[combo])
+                                        listUnion(set.list[combo], sort = sort)
                                     })
            },
            intersect = {
                combo.sets <- lapply(combos,
                                     function(combo) {
-                                        listIntersect(set.list[combo])
+                                        listIntersect(set.list[combo],
+                                                      sort = sort)
                                     })
            })
     
