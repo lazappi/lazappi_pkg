@@ -34,6 +34,19 @@ gg
 gg + theme_lazappi()
 ```
 
+Text
+====
+
+```{r text}
+gg <- ggplot(mtcars, aes(x = wt, y = mpg, label = rownames(mtcars))) +
+      geom_text(aes(colour = factor(cyl)))
+gg
+```
+
+```{r text-lazappi}
+gg + theme_lazappi()
+```
+
 Line
 ====
 
