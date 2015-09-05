@@ -26,7 +26,7 @@ Scatter
 
 ```{r scatter}
 gg <- ggplot(diamonds, aes(x = carat, y = price, colour = clarity)) +
-      geom_point()
+      geom_point() + ggtitle("Scatter")
 gg
 ```
 
@@ -39,7 +39,7 @@ Text
 
 ```{r text}
 gg <- ggplot(mtcars, aes(x = wt, y = mpg, label = rownames(mtcars))) +
-      geom_text(aes(colour = factor(cyl)))
+      geom_text(aes(colour = factor(cyl))) + ggtitle("Text")
 gg
 ```
 
@@ -63,7 +63,7 @@ mry <- do.call(rbind,
                )
 
 gg <- ggplot(mry, aes(x = year, y = number, group = rating, colour = rating)) +
-      geom_line()
+      geom_line() + ggtitle("Line")
 gg
 ```
 
@@ -88,7 +88,8 @@ grid$lcl <- err$fit - 1.96 * err$se.fit
 
 gg <- ggplot(mtcars, aes(x = wt, y = mpg, colour = factor(cyl))) +
       geom_point() +
-      geom_smooth(aes(ymin = lcl, ymax = ucl), data = grid, stat = "identity")
+      geom_smooth(aes(ymin = lcl, ymax = ucl), data = grid, stat = "identity") +
+      ggtitle("Smoothed")
 gg
 ```
 
@@ -100,7 +101,8 @@ Bar
 ===
 
 ```{r bar}
-gg <- ggplot(diamonds, aes(x = clarity, fill = cut)) + geom_bar()
+gg <- ggplot(diamonds, aes(x = clarity, fill = cut)) + geom_bar() +
+      ggtitle("Bar")
 gg
 ```
 
@@ -112,7 +114,8 @@ Histogram
 =========
 
 ```{r histogram}
-gg <- ggplot(movies, aes(x = rating, fill = ..count..)) + geom_histogram()
+gg <- ggplot(movies, aes(x = rating, fill = ..count..)) + geom_histogram() +
+      ggtitle("Histogram")
 gg
 ```
 
@@ -125,7 +128,7 @@ Freq Poly
 
 ```{r freq_poly}
 gg <- ggplot(diamonds, aes(x = price, colour = color)) +
-      geom_freqpoly(binwidth = 1000)
+      geom_freqpoly(binwidth = 1000) + ggtitle("Frequency Polygon")
 gg
 ```
 
@@ -141,7 +144,7 @@ set.seed(4393)
 diamonds_small <- diamonds[sample(nrow(diamonds), 1000), ]
 
 gg <- ggplot(diamonds_small, aes(x = depth, fill = cut)) +
-      geom_density(alpha = 0.2)
+      geom_density(alpha = 0.2) + ggtitle("Density")
 gg
 ```
 
@@ -153,7 +156,8 @@ gg + theme_lazappi()
 ==========
 
 ```{r 2d_density}
-gg <- ggplot(diamonds_small, aes(x = carat, y = price)) + geom_density2d()
+gg <- ggplot(diamonds_small, aes(x = carat, y = price)) + geom_density2d() +
+      ggtitle("2D Density")
 gg
 ```
 
@@ -166,7 +170,7 @@ Boxplot
 
 ```{r boxplot}
 gg <- ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
-      geom_boxplot()
+      geom_boxplot() + ggtitle("Boxplot")
 gg
 ```
 
@@ -179,7 +183,7 @@ Violin
 
 ```{r violin}
 gg <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
-      geom_violin(aes(fill = factor(cyl)))
+      geom_violin(aes(fill = factor(cyl))) + ggtitle("Violin")
 gg
 ```
 
@@ -192,7 +196,8 @@ Dotplot
 
 ```{r dotplot}
 gg <- ggplot(mtcars, aes(x = factor(vs), fill = factor(cyl), y = mpg)) +
-      geom_dotplot(binaxis = "y", stackdir = "center", position = "dodge")
+      geom_dotplot(binaxis = "y", stackdir = "center", position = "dodge") +
+      ggtitle("Dotplot")
 gg
 ```
 
@@ -212,7 +217,8 @@ pp <- function (n, r = 4) {
     df
 }
 
-gg <- ggplot(pp(20), aes(x = x, y = y)) + geom_tile(aes(fill = z))
+gg <- ggplot(pp(20), aes(x = x, y = y)) + geom_tile(aes(fill = z)) + 
+      ggtitle("Tile")
 gg
 ```
 
@@ -233,7 +239,7 @@ example <- data.frame(
 )
 
 gg <- ggplot(example, aes(x = x, y = y, fill = factor(z), width = w)) +
-      geom_tile()
+      geom_tile() + ggtitle("Title 2")
 gg
 ```
 
@@ -247,7 +253,7 @@ Facet Grid
 ```{r facet_grid}
 gg <- ggplot(mtcars, aes(x = mpg, y = wt, colour = factor(cyl))) +
       geom_point() +
-      facet_grid(vs ~ am, scales = "free")
+      facet_grid(vs ~ am, scales = "free") + ggtitle("Facet Grid")
 gg
 ```
 
@@ -261,7 +267,7 @@ Facet Wrap
 ```{r facet_wrap}
 gg <- ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
       geom_point() +
-      facet_wrap(~ color)
+      facet_wrap(~ color) + ggtitle("Facet Wrap")
 gg
 ```
 
