@@ -19,3 +19,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://lazappi.github.io/lazappi, https://github.com/lazappi/lazappi
+BugReports: https://github.com/lazappi/lazappi/issues
