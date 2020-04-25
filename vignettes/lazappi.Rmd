@@ -1,0 +1,40 @@
+---
+title: "lazappi"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{lazappi}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lazappi)
+```
+
+Introduction
+============
+
+This vignette briefly demonstrates the functions in this package.
+
+Cats
+====
+
+Do I love cats?
+
+```{r cats}
+cat_function()
+```
+
+What if I don't?
+
+```{r no-cats}
+cat_function(FALSE)
+```
+

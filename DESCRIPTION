@@ -1,6 +1,6 @@
 Package: lazappi
 Title: My personal R package
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Date: 2020-04-25
 Authors@R: 
     person(given = "Luke",
@@ -8,9 +8,14 @@ Authors@R:
            role = c("aut", "cre"),
            email = "luke@lazappi.id.au",
            comment = c(ORCID = "0000-0001-7744-8565"))
-Description: A set of handy functions for me to use
+Description: A set of handy functions for me to use.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
