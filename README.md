@@ -1,5 +1,15 @@
-# lazappi
-My personal R package, inspired by
-[Karl Broman's package](http://github.com/kbroman/broman) and
-[Hilary Parker's tutorial](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch).
 
+# lazappi
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+My personal R package.
+
+## Installation
+
+You can install the lazappi package from GitHub with:
+
+``` r
+remotes::install_github("lazappi/lazappi")
+```
