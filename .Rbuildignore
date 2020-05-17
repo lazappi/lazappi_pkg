@@ -1,5 +1,6 @@
 ^lazappi\.Rproj$
 ^\.Rproj\.user$
+^\.Rhistory$
 ^LICENSE\.md$
 ^doc$
 ^Meta$
