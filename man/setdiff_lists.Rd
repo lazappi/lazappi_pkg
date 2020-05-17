@@ -2,7 +2,7 @@
 % Please edit documentation in R/sets.R
 \name{setdiff_lists}
 \alias{setdiff_lists}
-\title{Setdiff lists}
+\title{Set difference lists}
 \usage{
 setdiff_lists(x, y, sort = TRUE)
 }

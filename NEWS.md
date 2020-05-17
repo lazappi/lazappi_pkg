@@ -4,6 +4,7 @@
 
 * Add set functions
 * Add `name_seq()` function
+* Setup spellcheck
 
 ## lazappi 0.0.0.9002 (2020-04-25)
 

@@ -17,9 +17,11 @@ Imports:
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    spelling
 URL: https://lazappi.github.io/lazappi, https://github.com/lazappi/lazappi
 BugReports: https://github.com/lazappi/lazappi/issues
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+Language: en-GB

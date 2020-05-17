@@ -47,7 +47,7 @@ union_list <- function(x, sort = TRUE) {
     return(unioned)
 }
 
-#' Setdiff lists
+#' Set difference lists
 #'
 #' Find the set of items that are present in the intersection of one list of
 #' vectors but not present in the union of another list of vectors
@@ -146,7 +146,7 @@ combine_sets <- function(sets, method = c("union", "intersect"), sort = TRUE) {
 #'
 #' @param x Vector to get combinations of
 #' @param min Minimum number of items in a combination
-#' @param max Maxium number of items in a combination
+#' @param max Maximum number of items in a combination
 #'
 #' @return Nested named list of combinations. The first level of the list is the
 #' combination lengths and the second level is the combinations themselves

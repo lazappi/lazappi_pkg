@@ -11,7 +11,7 @@ all_combos(x, min = 1, max = length(x))
 
 \item{min}{Minimum number of items in a combination}
 
-\item{max}{Maxium number of items in a combination}
+\item{max}{Maximum number of items in a combination}
 }
 \value{
 Nested named list of combinations. The first level of the list is the
