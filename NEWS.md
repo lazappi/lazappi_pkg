@@ -1,5 +1,10 @@
 # lazappi (development version)
 
+## lazappi 0.0.0.9003 (2020-05-17)
+
+* Add set functions
+* Add `name_seq()` function
+
 ## lazappi 0.0.0.9002 (2020-04-25)
 
 * Add cat function
