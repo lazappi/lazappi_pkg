@@ -1,197 +1,173 @@
-#' List Intersect
+#' Intersect list
 #'
-#' Find the intersect of a list of vectors
-#' 
-#' @param set.list List of vectors to intersect
-#' @param sort     Whether to sort the final set, default is TRUE
-#' 
-#' @return Vector containing the intersection
-#' 
-#' @examples
-#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
-#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
-#' listIntersect(l)
-#' 
+#' Find the intersection of a list of vectors
+#'
+#' @param x List of vectors to intersect
+#' @param sort Whether to sort the intersection
+#'
+#' @return Vector containing the intersection of all vectors in `x`
 #' @export
-listIntersect <- function(set.list, sort = TRUE) {
-    
-    if (length(set.list) == 0) {
-        inter.set <- c()
-    } else if (length(set.list) == 1) {
-        inter.set <- unique(unlist(set.list))
-    } else if (length(set.list) == 2) {
-        inter.set <- intersect(set.list[[1]], set.list[[2]])
-    } else {
-        inter.set <- intersect(set.list[[1]], listIntersect(set.list[-1]))
+#'
+#' @examples
+#' x <- list(A = c(1, 2, 3), B = c(2, 3, 4), C = c(3, 4, 5))
+#' intersect_list(x)
+intersect_list <- function(x, sort = TRUE) {
+
+    intersection <- purrr::reduce(x, intersect)
+
+    if (sort) {
+        intersection <- sort(intersection)
     }
-    
-    if (sort && length(inter.set > 0)) {inter.set <- sort(inter.set)}
-    
-    return(inter.set)
+
+    return(intersection)
 }
 
-#' List Union
-#' 
+
+#' Union list
+#'
 #' Find the union of a list of vectors
-#' 
-#' @param set.list List of vectors to union
-#' @param sort     Whether to sort the final set, default is TRUE
-#' 
-#' @return Vector containing the union
-#' 
-#' @examples
-#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
-#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
-#' listUnion(l)
-#' 
+#'
+#' @param x List of vectors to union
+#' @param sort Whether to sort the union
+#'
+#' @return Vector containing the union of all vectors in `x`
 #' @export
-listUnion <- function(set.list, sort = TRUE) {
-    
-    if (length(set.list) == 0) {
-        union.set <- c()
-    } else if (length(set.list) == 1) {
-        union.set <- unique(unlist(set.list))
-    } else if (length(set.list) == 2) {
-        union.set <- union(set.list[[1]], set.list[[2]])
-    } else if (length(set.list) > 2) {
-        union.set <- union(set.list[[1]], listUnion(set.list[-1]))
+#'
+#' @examples
+#' x <- list(A = c(1, 2, 3), B = c(2, 3, 4), C = c(3, 4, 5))
+#' union_list(x)
+union_list <- function(x, sort = TRUE) {
+
+    unioned <- purrr::reduce(x, union, .init = c())
+
+    if (sort) {
+        unioned <- sort(unioned)
     }
-    
-    if (sort && length(union.set > 0)) {union.set <- sort(union.set)}
-    
-    return(union.set)
+
+    return(unioned)
 }
 
-#' List Setdiff
-#' 
-#' Find the items that are in one list of vector but not another
-#' 
-#' @param set.list1 The first list of vectors to compare
-#' @param set.list2 The second list of vectors to compare
-#' @param sort      Whether to sort the final set, default is TRUE
-#' 
-#' @return List containing the items in set.list1 that are not in set.list2
-#' 
-#' @examples
-#' l1 <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
-#'            Set3 = sample(20, 10), Set4 = sample(20, 10))
-#' l2 <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
-#'            Set3 = sample(20, 10), Set4 = sample(20, 10))
-#' listSetdiff(l1, l2)
-#' 
+#' Set difference lists
+#'
+#' Find the set of items that are present in the intersection of one list of
+#' vectors but not present in the union of another list of vectors
+#'
+#' @param x List of vectors
+#' @param y Another list of vectors
+#' @param sort Whether to sort the difference
+#'
+#' @return Vector containing difference between two lists of vectors
 #' @export
-listSetdiff <- function(set.list1, set.list2, sort = TRUE) {
-    
-    set.list1.inter <- listIntersect(set.list1)
-    set.list2.union <- listUnion(set.list2)
-    
-    diff.set <- setdiff(set.list1.inter, set.list2.union)
-    
-    if (sort && length(diff.set > 0)) {diff.set <- sort(diff.set)}
-    
-    return(diff.set)
+#'
+#' @examples
+#' x <- list(A = c(1, 2, 3), B = c(2, 3, 4), C = c(3, 4, 5))
+#' y <- list(D = c(1, 2), E = c(4, 5))
+#' setdiff_lists(x, y)
+setdiff_lists <- function(x, y, sort = TRUE) {
+
+    intersection_x <- intersect_list(x, sort = sort)
+    union_y <- union_list(y, sort = sort)
+
+    diff_x <- setdiff(intersection_x, union_y)
+
+    return(diff_x)
 }
 
-#' Overlap Sets
-#' 
+#' Venn sets
+#'
 #' Takes a list of vectors and returns the sets corresponding to the overlapping
 #' regions in a Venn diagram
-#' 
-#' @param set.list List of vectors to overlap
-#' @param sort     Whether to sort the final sets, default is TRUE
-#' 
-#' @return List of sets corresponding to Venn regions
-#' 
-#' @examples
-#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
-#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
-#' overlapSets(l)
-#' 
+#'
+#' @param sets List of vectors
+#' @param sort Whether to sort the overlaps
+#'
+#' @return Named list of overlap vectors
 #' @export
-overlapSets <- function(set.list, sort = TRUE) {
-    
-    # Get names, set if needed
-    if (is.null(names(set.list))) {
-        set.names <- seq(1, length(set.list))
-    } else {
-        set.names <- names(set.list)
-    }
-    
-    # Get all possible combinations
-    combos <- lapply(1:length(set.list),
-                     function(j) combn(names(set.list), j, simplify = FALSE))
-    combos <- unlist(combos, recursive = FALSE)
-    
-    # Set combination names
-    names(combos) <- sapply(combos, function(i) paste0(i, collapse = "."))
-    
-    # Compute overlaps
-    venn.sets <- lapply(combos,
-                        function(combo) {
-                            listSetdiff(set.list[combo],
-                                        set.list[setdiff(set.names, combo)],
-                                        sort = sort)
-                        }) 
-    
-    return(venn.sets)
+#'
+#' @examples
+#' x <- list(A = c(1, 2, 3), B = c(2, 3, 4), C = c(3, 4, 5))
+#' venn_sets(x)
+venn_sets <- function(sets, sort = TRUE) {
+
+    sets <- name_seq(sets, "Set")
+
+    combos <- unlist(all_combos(names(sets)), recursive = FALSE)
+    names(combos) <- purrr::map_chr(combos, paste0, collapse = "_")
+
+    venn <- purrr::map(combos, function(.combo) {
+        setdiff_lists(
+            sets[.combo], sets[setdiff(names(sets), .combo)],
+            sort = sort
+        )
+    })
+
+    return(venn)
 }
 
-#' Combine Sets
-#' 
-#' Compute combination of a list of vectors using a selected set method
-#' 
-#' @param set.list List of vectors to combine
-#' @param method   Method to combine sets, can be "union" or "intersect"
-#'                 abbreviations accepted)
-#' @param sort     Whether to sort the final sets, default is TRUE
-#' 
-#' @return List containing combined sets
-#' 
-#' @examples
-#' l <- list(Set1 = sample(20, 10), Set2 = sample(20, 10),
-#'           Set3 = sample(20, 10), Set4 = sample(20, 10))
-#' combineSets(l, "union")
-#' combineSets(l, "intersect")
-#' 
+#' Combine sets
+#'
+#' Compute all combinations of a list of vectors using a selected set method
+#'
+#' @param sets List of vectors
+#' @param method Method for combining sets
+#' @param sort Whether to sort the results
+#'
+#' @return Named list of combined vectors
 #' @export
-combineSets <- function(set.list, method = c("union", "intersect"),
-                        sort = TRUE) {
-    
+#'
+#' @examples
+#' x <- list(A = c(1, 2, 3), B = c(2, 3, 4), C = c(3, 4, 5))
+#' combine_sets(x, method = "union")
+#' combine_sets(x, method = "intersect")
+combine_sets <- function(sets, method = c("union", "intersect"), sort = TRUE) {
+
     method <- match.arg(method)
-    
-    # Get names, set if needed
-    if (is.null(names(set.list))) {
-        set.names <- seq(1, length(set.list))
-    } else {
-        set.names <- names(set.list)
-    }
-    
-    combos <- lapply(1:length(set.list),
-                     function(j) combn(names(set.list), j, simplify = FALSE))
-    combos <- unlist(combos, recursive = FALSE)
-    
-    # Set combination names
-    names(combos) <- sapply(combos,
-                            function(combo) {
-                                paste0(method, ".",
-                                       paste0(combo, collapse = "."))
-                            })
-    
-    # Combine sets using method
-    switch(method,
-           union = {
-               combo.sets <- lapply(combos,
-                                    function(combo) {
-                                        listUnion(set.list[combo], sort = sort)
-                                    })
-           },
-           intersect = {
-               combo.sets <- lapply(combos,
-                                    function(combo) {
-                                        listIntersect(set.list[combo],
-                                                      sort = sort)
-                                    })
-           })
-    
-    return(combo.sets)
+
+    sets <- name_seq(sets, "Set")
+
+    combos <- unlist(all_combos(names(sets)), recursive = FALSE)
+    names(combos) <- purrr::map_chr(combos, paste0, collapse = "_")
+
+    comb_fun <- switch(
+        method,
+        union     = union_list,
+        intersect = intersect_list
+    )
+
+    combinations <- purrr::map(combos, ~ comb_fun(sets[.x]), sort = sort)
+
+    return(combinations)
+}
+
+
+#' All combinations
+#'
+#' Compute all possible combinations of items in a vector
+#'
+#' @param x Vector to get combinations of
+#' @param min Minimum number of items in a combination
+#' @param max Maximum number of items in a combination
+#'
+#' @return Nested named list of combinations. The first level of the list is the
+#' combination lengths and the second level is the combinations themselves
+#' @export
+#'
+#' @importFrom utils combn
+#'
+#' @examples
+#' all_combos(1:3)
+#'
+#' # Single level list of combinations
+#' unlist(all_combos(1:3), recursive = FALSE)
+all_combos <- function(x, min = 1, max = length(x)) {
+
+    lengths <- seq(min, max)
+
+    combos <- purrr::map(lengths, function(.len) {
+        name_seq(combn(x, .len, simplify = FALSE), "Combo")
+    })
+
+    combos <- name_seq(combos, "Length")
+
+    return(combos)
 }

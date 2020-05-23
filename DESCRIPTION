@@ -1,15 +1,28 @@
 Package: lazappi
-Title: My personal R package.
-Version: 0.0.0.9000
-Authors@R: person("Luke", "Zappia", email = "luke.zappia@gmail.com", role = c("aut", "cre"))
-Description: A set of custom functions that I commonly use.
-Depends:
-    R (>= 3.2.1)
-License: MIT
+Title: My personal R package
+Version: 0.0.0.9006
+Date: 2020-05-23
+Authors@R: 
+    person(given = "Luke",
+           family = "Zappia",
+           role = c("aut", "cre"),
+           email = "luke@lazappi.id.au",
+           comment = c(ORCID = "0000-0001-7744-8565"))
+Description: A set of handy functions for me to use.
+License: MIT + file LICENSE
+Encoding: UTF-8
 LazyData: true
-Suggests:
-    knitr
+Imports: 
+    purrr,
+    scales
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown,
+    spelling
+URL: https://lazappi.github.io/lazappi, https://github.com/lazappi/lazappi
+BugReports: https://github.com/lazappi/lazappi/issues
 VignetteBuilder: knitr
-Imports:
-    knitr
-RoxygenNote: 5.0.1
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Language: en-GB
