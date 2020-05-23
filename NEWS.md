@@ -1,4 +1,13 @@
-# lazappi (development version)
+# lazappi 0.1.0 (2020-05-23)
+
+* Setup new package template
+* Add cat function
+* Add set functions
+* Add `name_seq()` function
+* Add scaling functions
+* Add tests
+* Update vignette
+* Set up spellcheck
 
 ## lazappi 0.0.0.9005 (2020-05-23)
 

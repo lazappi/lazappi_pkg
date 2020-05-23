@@ -1,6 +1,6 @@
 Package: lazappi
 Title: My personal R package
-Version: 0.0.0.9006
+Version: 0.1.0
 Date: 2020-05-23
 Authors@R: 
     person(given = "Luke",
