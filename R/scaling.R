@@ -55,5 +55,5 @@ scale_mean <- function(x) {
 #'
 #' @export
 scale_unit <- function(x) {
-    x / (sqrt(x ^ 2))
+    x / (sqrt(sum(x ^ 2)))
 }
