@@ -2,6 +2,10 @@
 
 ## lazappi 0.0.0.9005 (2020-05-23)
 
+* Update vignette
+
+## lazappi 0.0.0.9005 (2020-05-23)
+
 * Add tests
 
 ## lazappi 0.0.0.9004 (2020-05-23)

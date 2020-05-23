@@ -21,7 +21,7 @@ library(lazappi)
 Introduction
 ============
 
-This vignette briefly demonstrates the functions in this package.
+This vignette provides brief introduction to the functions in my package.
 
 Cats
 ====
@@ -37,4 +37,134 @@ What if I don't?
 ```{r no-cats}
 cat_function(FALSE)
 ```
+
+Scaling
+=======
+
+Scale min-max
+-------------
+
+The `scale_minmax()` function scales values between zero and one.
+
+```{r scale-minmax}
+scale_minmax(c(0:10))
+scale_minmax(c(-10:10))
+```
+
+Scale mean
+----------
+
+The `scale_mean()` function performs mean scaling
+(see https://en.wikipedia.org/wiki/Feature_scaling#Mean_normalization).
+
+```{r scale-mean}
+scale_mean(c(0, 1))
+scale_mean(c(-1, 1))
+```
+
+Scale unit
+----------
+
+The `scale_unit()` function performs unit length scaling
+(see https://en.wikipedia.org/wiki/Feature_scaling#Scaling_to_unit_length).
+
+```{r scale-unit}
+scale_unit(c(0, 1))
+scale_unit(c(-1, 1))
+```
+
+Names
+=====
+
+Name seq
+--------
+
+Sometimes it is useful to give a sequential set of names to a vector (or
+vector-like object). The `name_seq()` function is an easy way to do this.
+
+```{r name-seq}
+name_seq(1:3)
+```
+
+If there already some names present these are kept.
+
+```{r name-seq-keep}
+name_seq(c(1, B = 2, 3))
+```
+
+You can also provide a prefix for the new names.
+
+```{r name-seq-prefix}
+name_seq(1:3, prefix = "Item")
+```
+
+Sets
+====
+
+These are some useful functions for working with lists of sets.
+
+Intersect list
+--------------
+
+The `intersect_list()` function provides the intersection off all vectors in a
+list.
+
+```{r intersect-set}
+sets <- list(1:3, 2:4, 3:5)
+intersect_list(sets)
+```
+
+Union list
+----------
+
+The `union_list()` function provides the union off all vectors in a list.
+
+```{r union-set}
+union_list(sets)
+```
+
+
+Setdiff lists
+-------------
+
+The `setdiff_lists()` function finds all items that are present in the
+intersection of one list of vectors but not present in the union of another list
+of vectors.
+
+```{r setdiff-lists}
+setdiff_lists(list(c(1:3), c(2:4)), list(c(1, 2)))
+```
+
+Venn sets
+---------
+
+The `venn_sets()` function takes a list of vectors and returns the sets of items
+corresponding to each region in a Venn diagram.
+
+```{r venn-sets}
+venn_sets(sets)
+```
+
+Combine sets
+------------
+
+The `combine_sets()` function finds all combinations of a list of vectors using
+either the union or the intersect.
+
+```{r combine-sets}
+combine_sets(sets, method = "union")
+combine_sets(sets, method = "intersect")
+```
+
+All combos
+----------
+
+The `all_combos()` function takes a vector and returns all combinations of the
+items (of a set length).
+
+```{r all-combos}
+all_combos(1:4)
+all_combos(1:4, min = 2, max = 3)
+```
+
 
